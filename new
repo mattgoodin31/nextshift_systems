@@ -1,0 +1,435 @@
+"use client"
+import React from "react"
+import Link from "next/link"
+
+// ✅ Next.js-ready version of NextShift Systems one-page app.
+// Tailwind CSS + Inter font required (Tailwind added automatically by create-next-app with Tailwind).
+// Just paste into src/app/page.jsx and deploy to Vercel.
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900 font-inter">
+      <Header />
+      <main className="max-w-6xl mx-auto px-6 py-12">
+        <Home />
+      </main>
+      <Footer />
+    </div>
+  )
+}
+
+/* ---------- Header ---------- */
+function Header() {
+  return (
+    <header className="border-b border-gray-200 bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-[#0B132B] to-[#00C6FF] text-white font-bold">
+            NS
+          </div>
+          <div>
+            <div className="text-lg font-semibold">NextShift Systems</div>
+            <div className="text-xs text-gray-500 -mt-1">
+              Work Smarter. Automate Faster.
+            </div>
+          </div>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-6">
+          <NavLink href="#services">Services</NavLink>
+          <NavLink href="#industries">Industries</NavLink>
+          <NavLink href="#about">About</NavLink>
+          <NavLink href="#contact" className="ml-2">
+            Contact
+          </NavLink>
+          <a
+            href="#book"
+            className="ml-4 inline-block px-4 py-2 bg-[#00C6FF] text-white rounded-lg shadow hover:opacity-95"
+          >
+            Book Audit
+          </a>
+        </nav>
+
+        <MobileMenu />
+      </div>
+    </header>
+  )
+}
+
+function NavLink({ href, children }) {
+  return (
+    <a href={href} className="text-sm text-gray-700 hover:text-gray-900">
+      {children}
+    </a>
+  )
+}
+
+function MobileMenu() {
+  return (
+    <div className="md:hidden">
+      <details className="relative">
+        <summary className="cursor-pointer px-2 py-1 rounded-md">Menu</summary>
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border">
+          <a href="#services" className="block px-4 py-2 text-sm">
+            Services
+          </a>
+          <a href="#industries" className="block px-4 py-2 text-sm">
+            Industries
+          </a>
+          <a href="#about" className="block px-4 py-2 text-sm">
+            About
+          </a>
+          <a href="#contact" className="block px-4 py-2 text-sm">
+            Contact
+          </a>
+        </div>
+      </details>
+    </div>
+  )
+}
+
+/* ---------- Footer ---------- */
+function Footer() {
+  return (
+    <footer className="mt-16 border-t border-gray-200 bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-start gap-6">
+        <div>
+          <div className="text-lg font-semibold">NextShift Systems</div>
+          <div className="text-sm text-gray-500 mt-2">
+            Work Smarter. Automate Faster.
+          </div>
+        </div>
+        <div className="text-sm text-gray-600">
+          © {new Date().getFullYear()} NextShift Systems. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+/* ---------- Home Page Sections ---------- */
+function Home() {
+  return (
+    <section>
+      <Hero />
+      <HowItWorks />
+      <Highlights />
+      <Industries />
+      <Services />
+      <About />
+      <Contact />
+      <Testimonials />
+    </section>
+  )
+}
+
+function Hero() {
+  return (
+    <div className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 rounded-3xl p-8 md:p-12 shadow">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            Work Smarter. Automate Faster.
+          </h1>
+          <p className="mt-4 text-gray-600 max-w-xl">
+            NextShift Systems builds AI-first automations that remove busywork
+            and unlock time for growth. Launch impactful workflows in as fast as
+            7 days.
+          </p>
+
+          <div className="mt-6 flex gap-4">
+            <a
+              href="#contact"
+              className="inline-block px-6 py-3 bg-[#0B132B] text-white rounded-lg"
+            >
+              Book Free Audit
+            </a>
+            <a
+              href="#services"
+              className="inline-block px-6 py-3 border rounded-lg"
+            >
+              Explore Services
+            </a>
+          </div>
+
+          <div className="mt-8 grid grid-cols-3 gap-4 text-sm text-gray-600">
+            <Stat label="Avg time saved" value="10+ hrs/wk" />
+            <Stat label="Setup time" value="7 days" />
+            <Stat label="Typical ROI" value="3–6x" />
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center">
+          <DeviceMockup />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Stat({ label, value }) {
+  return (
+    <div className="bg-white p-4 rounded-lg shadow text-center">
+      <div className="text-sm text-gray-500">{label}</div>
+      <div className="text-lg font-semibold">{value}</div>
+    </div>
+  )
+}
+
+function DeviceMockup() {
+  return (
+    <div className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+      <div className="h-60 bg-gradient-to-br from-[#0B132B] to-[#00C6FF] rounded-lg flex items-center justify-center text-white">
+        Demo Automation
+      </div>
+      <div className="mt-4 text-sm text-gray-500">
+        Live preview of an AI workflow: leads → ChatGPT response → CRM.
+      </div>
+    </div>
+  )
+}
+
+function HowItWorks() {
+  const steps = [
+    {
+      title: "Audit",
+      desc: "We review your workflows and find the highest-impact automations.",
+    },
+    {
+      title: "Build",
+      desc: "We implement integrations and AI prompts to automate tasks.",
+    },
+    {
+      title: "Optimize",
+      desc: "We monitor results and iterate to increase ROI.",
+    },
+  ]
+
+  return (
+    <div
+      id="how-it-works"
+      className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+    >
+      {steps.map((s) => (
+        <div key={s.title} className="p-6 bg-white rounded-2xl shadow">
+          <div className="text-sm text-gray-500">{s.title}</div>
+          <div className="mt-3 font-semibold">{s.desc}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function Highlights() {
+  const highlights = [
+    {
+      title: "No-code integrations",
+      desc: "We use robust automation platforms to connect your tools.",
+    },
+    {
+      title: "Custom AI prompts",
+      desc: "Tailored prompts to match your brand voice and workflow needs.",
+    },
+    { title: "Fast delivery", desc: "Get a working system in 7 days." },
+  ]
+
+  return (
+    <div className="mt-12">
+      <h2 className="text-2xl font-bold">What we deliver</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        {highlights.map((h) => (
+          <div key={h.title} className="p-6 bg-white rounded-2xl shadow">
+            <div className="font-semibold">{h.title}</div>
+            <div className="text-sm text-gray-600 mt-2">{h.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function Industries() {
+  const items = [
+    {
+      title: "Small Business",
+      desc: "Operational automations that free up owner time.",
+    },
+    {
+      title: "E-commerce",
+      desc: "Automated order follow-up, product copy, and returns handling.",
+    },
+    {
+      title: "Real Estate",
+      desc: "Listing workflows, lead nurture, and appointment scheduling.",
+    },
+    {
+      title: "Agencies",
+      desc: "Client onboarding, reporting, and content pipelines.",
+    },
+  ]
+
+  return (
+    <div id="industries" className="space-y-8 mt-12">
+      <h1 className="text-3xl font-bold">Industries</h1>
+      <p className="text-gray-600 max-w-2xl">
+        We’ve built repeatable automation templates for these verticals — and
+        can customize for your business.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        {items.map((i) => (
+          <div
+            key={i.title}
+            className="p-6 bg-white rounded-2xl shadow flex gap-4 items-start"
+          >
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-gray-100">
+              📦
+            </div>
+            <div>
+              <div className="font-semibold">{i.title}</div>
+              <div className="text-sm text-gray-600 mt-1">{i.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function Services() {
+  const services = [
+    {
+      title: "Automation Jumpstart",
+      price: "$750",
+      desc: "Automate 3–5 high-impact tasks in 7 days.",
+    },
+    {
+      title: "Growth Suite",
+      price: "$1,500",
+      desc: "Chatbots, social posting, CRM sync, and advanced workflows.",
+    },
+    {
+      title: "Partner Plan",
+      price: "$2,000/mo",
+      desc: "Ongoing automation management and analytics.",
+    },
+  ]
+
+  return (
+    <div id="services" className="space-y-8 mt-12">
+      <h1 className="text-3xl font-bold">Services</h1>
+      <p className="text-gray-600 max-w-2xl">
+        Productized automation packages designed to give measurable time savings
+        and operational upgrades without the engineering overhead.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        {services.map((s) => (
+          <div key={s.title} className="p-6 bg-white rounded-2xl shadow">
+            <div className="text-sm text-gray-500">{s.title}</div>
+            <div className="mt-3 flex items-baseline justify-between">
+              <div className="text-2xl font-semibold">{s.price}</div>
+            </div>
+            <p className="mt-4 text-gray-600">{s.desc}</p>
+            <div className="mt-6">
+              <a
+                href="#contact"
+                className="inline-block px-4 py-2 border rounded-lg"
+              >
+                Get Started
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function About() {
+  return (
+    <div id="about" className="space-y-6 max-w-3xl mt-12">
+      <h1 className="text-3xl font-bold">About NextShift Systems</h1>
+      <p className="text-gray-600">
+        NextShift Systems was founded to help small businesses move from manual,
+        repetitive processes to smart, AI-driven workflows. We combine modern AI
+        models with robust automation platforms to deliver systems that save
+        time and scale reliably.
+      </p>
+
+      <div className="mt-6 bg-white p-6 rounded-2xl shadow">
+        <div className="font-semibold">Our approach</div>
+        <ol className="mt-3 list-decimal list-inside text-gray-600">
+          <li>Audit: Identify the highest-impact tasks to automate.</li>
+          <li>Build: Implement the workflows with AI + integrations.</li>
+          <li>Optimize: Monitor performance and iterate.</li>
+        </ol>
+      </div>
+    </div>
+  )
+}
+
+function Contact() {
+  return (
+    <div id="contact" className="max-w-2xl bg-white p-8 rounded-2xl shadow mt-12">
+      <h1 className="text-2xl font-bold">Get a Free Automation Audit</h1>
+      <p className="text-gray-600 mt-2">
+        Book a 20-minute audit — we’ll find 3 tasks you can automate right away.
+      </p>
+
+      <form className="mt-6 grid grid-cols-1 gap-4">
+        <input
+          placeholder="Your name"
+          className="border rounded-lg px-4 py-3"
+        />
+        <input placeholder="Email" className="border rounded-lg px-4 py-3" />
+        <input
+          placeholder="Website (optional)"
+          className="border rounded-lg px-4 py-3"
+        />
+        <textarea
+          placeholder="What do you want to automate?"
+          className="border rounded-lg px-4 py-3 h-28"
+        />
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            className="px-4 py-2 bg-[#00C6FF] text-white rounded-lg"
+          >
+            Request Audit
+          </button>
+          <a href="#services" className="text-sm text-gray-600">
+            View services
+          </a>
+        </div>
+      </form>
+    </div>
+  )
+}
+
+function Testimonials() {
+  const t = [
+    {
+      name: "Alex, Agency",
+      quote: "NextShift reduced our reporting time from 8 hours to 30 minutes.",
+    },
+    {
+      name: "Maya, E-comm",
+      quote: "We launched automated follow-ups and saw conversion improve.",
+    },
+  ]
+
+  return (
+    <div className="mt-12">
+      <h2 className="text-2xl font-bold">Trusted by small teams</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        {t.map((x) => (
+          <div key={x.name} className="p-6 bg-white rounded-2xl shadow">
+            <div className="font-semibold">{x.name}</div>
+            <div className="text-sm text-gray-600 mt-2">"{x.quote}"</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
